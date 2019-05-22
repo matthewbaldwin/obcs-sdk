@@ -15,7 +15,6 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ol76"
   # Oracle Yum - Vagrant boxes
   # Vagrant Add a Box
-  # 
   # https://www.vagrantup.com/docs/cli/box.html
   # http://yum.oracle.com/boxes
   # config.vm.box_url = "https://yum.oracle.com/boxes/oraclelinux/ol76/ol76.box"
@@ -45,13 +44,14 @@ Vagrant.configure("2") do |config|
   
   #provisioning container
   config.vm.network "forwarded_port", guest:3000, host: 3000
-  # config.vm.network "forwarded_port", guest:3200, host: 3200
+  config.vm.network "forwarded_port", guest:443, host: 8443
   
   #detroitauto orig
   config.vm.network "forwarded_port", guest:4000, host: 4000
   #detroitauto console
   config.vm.network "forwarded_port", guest:4003, host: 4003
   #detroitauto rest proxy
+  #customertenant@oracle.com is the username for the restproxy in postman
   config.vm.network "forwarded_port", guest:4018, host: 4018
 
   #samdealership orig
@@ -59,7 +59,8 @@ Vagrant.configure("2") do |config|
   #samdealerhship console
   config.vm.network "forwarded_port", guest:5003, host: 5003
   #samdealerhship rest proxy
-  config.vm.network "forwarded_port", guest:5018, host: 5018
+  # customertenant@oracle.com is the username for the restproxy in postman
+  config.vm.network "forwarded_port", guest:5016, host: 5016
 
   #bobdealership orig
   config.vm.network "forwarded_port", guest:6000, host: 6000
@@ -97,7 +98,7 @@ Vagrant.configure("2") do |config|
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-      vb.memory = "4096"
+      vb.memory = "8192"
   end
   #
   # View the documentation for the provider you are using for more
